@@ -1,0 +1,25 @@
+# Kuso-Engine
+#
+# A 2D RPG game engine by the SERVICE PUBLIC Team
+#
+
+PROJECT(Kengine)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+
+# set up SDL2pp library
+SET(SDL2PP_WITH_IMAGE YES)
+SET(SDL2PP_WITH_TTF YES)
+ADD_SUBDIRECTORY(SDL2pp)
+
+# add compilation flags
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+ADD_DEFINITIONS(-DDATA_PATH="${PROJECT_SOURCE_DIR}/data")
+INCLUDE_DIRECTORIES(${SDL2PP_INCLUDE_DIRS})
+
+# define targets
+set(SRCS main.cpp Kengine.cpp)
+set(HEADERS Kengine.h)
+
+ADD_EXECUTABLE(main ${SRCS} ${HEADERS})
+TARGET_LINK_LIBRARIES(main ${SDL2PP_LIBRARIES})
